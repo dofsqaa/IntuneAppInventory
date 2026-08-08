@@ -1,0 +1,3 @@
+$Action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-ExecutionPolicy Bypass -WindowStyle Hidden -File C:\ProgramData\IntuneInventory\IntuneInventory.ps1 -Sync"
+$Trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Hours 1)
+Register-ScheduledTask -TaskName "Intune-App-Inventory-Sync" -Action $Action -Trigger$Trigger -User "NT AUTHORITY\SYSTEM" -RunLevel Highest
